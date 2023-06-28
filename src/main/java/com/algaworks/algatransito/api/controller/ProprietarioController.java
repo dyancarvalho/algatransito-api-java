@@ -21,6 +21,7 @@ public class ProprietarioController {
 
     @GetMapping("/proprietarios")
     public List<Proprietario> listar(){
+  //      return proprietarioRepository.findByNomeContaining("Si");
         return proprietarioRepository.findAll();
     }
 

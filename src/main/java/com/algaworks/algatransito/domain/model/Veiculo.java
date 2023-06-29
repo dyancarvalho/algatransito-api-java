@@ -28,7 +28,7 @@ public class Veiculo {
 
     @Enumerated(EnumType.STRING)
     private StatusVeiculo status;
-    
+
     private LocalDateTime dataCadastro;
     private LocalDateTime dataApreensao;
 }

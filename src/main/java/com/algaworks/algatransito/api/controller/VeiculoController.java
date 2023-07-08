@@ -1,13 +1,16 @@
 package com.algaworks.algatransito.api.controller;
 
+import com.algaworks.algatransito.api.model.VeiculoModel;
 import com.algaworks.algatransito.domain.exception.NegocioException;
 import com.algaworks.algatransito.domain.model.Veiculo;
 import com.algaworks.algatransito.domain.repository.VeiculoRepository;
 import com.algaworks.algatransito.domain.service.RegistroVeiculoService;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
+import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -19,15 +22,17 @@ public class VeiculoController {
 
     private final VeiculoRepository veiculoRepository;
     private final RegistroVeiculoService registroVeiculoService;
-
+    private final ModelMapper modelMapper;
+    
     @GetMapping
     public List<Veiculo> listar(){
         return veiculoRepository.findAll();
     }
 
     @GetMapping("/{veiculoId}")
-    public ResponseEntity<Veiculo> buscar(@Valid @PathVariable Long veiculoId){
+    public ResponseEntity<VeiculoModel> buscar(@PathVariable Long veiculoId) {
         return veiculoRepository.findById(veiculoId)
+                .map(veiculo -> modelMapper.map(veiculo, VeiculoModel.class))
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }

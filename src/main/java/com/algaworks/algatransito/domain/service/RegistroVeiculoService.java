@@ -18,6 +18,11 @@ public class RegistroVeiculoService {
     public final RegistroProprietarioService registroProprietarioService;
     public final VeiculoRepository veiculoRepository;
 
+    public Veiculo buscar(Long veiculoId){
+        return veiculoRepository.findById(veiculoId)
+                .orElseThrow(() -> new NegocioException("Veículo não encontrado"));
+    }
+
     @Transactional
     public Veiculo cadastrar(Veiculo novoVeiculo){
         if(novoVeiculo.getId() != null){

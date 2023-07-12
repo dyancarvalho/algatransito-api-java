@@ -11,7 +11,7 @@ import java.time.OffsetDateTime;
 public class AutuacaoModel {
 
     private Long id;
-    private String descrcao;
+    private String descricao;
     private BigDecimal valorMulta;
     private OffsetDateTime dataOcorrencia;
 

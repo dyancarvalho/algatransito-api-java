@@ -38,6 +38,4 @@ public class AutuacaoController {
         Veiculo veiculo = registroVeiculoService.buscar(veiculoId);
         return autuacaoAssembler.toCollectionModel(veiculo.getAutuacoes());
     }
-
-
 }
